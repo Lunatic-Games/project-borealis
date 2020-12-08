@@ -1,7 +1,7 @@
 # Project Borealis
 **Devices:**  
 **Inputs:**  
-**Godot version:**
+**Godot version:**  
 **Genres:**  
 **Time to complete:**  
 ### Joe’s duties
