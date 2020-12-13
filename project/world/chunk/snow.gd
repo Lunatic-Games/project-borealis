@@ -28,7 +28,6 @@ func _physics_process(_delta):
 
 func create_mesh():
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	
 	var v_length = 1.0 / float(VERTEX_DENSITY)
 	for x in range(MESH_SIZE.x * VERTEX_DENSITY):
 		for z in range(MESH_SIZE.y * VERTEX_DENSITY):
@@ -83,3 +82,7 @@ func set_height(world_pos, height, offset=Vector2(0, 0), _min_of_two=true):
 	if height_map.get_pixelv(image_coord).r < height:
 		return
 	height_map.set_pixelv(image_coord, get_height_color(height))
+
+func reset_path():
+	height_map.fill(get_height_color(DEFAULT_HEIGHT))
+	height_map_texture.create_from_image(height_map)

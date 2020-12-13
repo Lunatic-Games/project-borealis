@@ -1,7 +1,7 @@
 extends KinematicBody
 
 const GRAVITY = 0.3
-const MOVE_SPEED = 5.0 # 5.0
+const MOVE_SPEED = 5.0
 const MOVE_ACCELERATION = 0.4
 const JUMP_FORCE = 9.0
 const TERMINAL_VELOCITY = 10.0
