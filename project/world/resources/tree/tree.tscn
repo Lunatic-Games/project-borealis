@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="CylinderShape" id=5]
+radius = 0.5
+height = 10.0
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.25098, 0.160784, 0.0196078, 1 )
+
+[sub_resource type="CylinderMesh" id=2]
+material = SubResource( 1 )
+top_radius = 0.4
+bottom_radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.486275, 0.952941, 0.435294, 1 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+radius = 1.5
+
+[node name="Tree" type="StaticBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+shape = SubResource( 5 )
+
+[node name="Trunk" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Top" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0 )
+mesh = SubResource( 4 )
+material/0 = null
