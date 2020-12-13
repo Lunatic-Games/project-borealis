@@ -4,7 +4,7 @@
 [ext_resource path="res://world/world.gd" type="Script" id=2]
 [ext_resource path="res://world/chunk/chunk.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 
 uniform sampler2D player_path;
@@ -33,13 +33,13 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/height_map_size = PoolIntArray( 40, 60 )
 shader_param/vertex_density = 4.0
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
 shader_param/height_map_size = PoolIntArray( 40, 60 )
 shader_param/vertex_density = 4.0
 
@@ -50,12 +50,12 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -70 )
 
 [node name="Snow" parent="Chunk2" index="2"]
-material_override = SubResource( 4 )
+material_override = SubResource( 2 )
 
 [node name="Chunk" parent="." instance=ExtResource( 3 )]
 
 [node name="Snow" parent="Chunk" index="2"]
-material_override = SubResource( 5 )
+material_override = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49558, 0 )
