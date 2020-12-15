@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/WinterSurvivorV1.glb-432da1f2e4cc80035b17e91aee383611.scn"
+path="res://.import/WinterSurvivorV2.glb-60b95ec67a6353c68fa392e8047411a5.scn"
 
 [deps]
 
-source_file="res://tests/player_test/WinterSurvivorV1.glb"
-dest_files=[ "res://.import/WinterSurvivorV1.glb-432da1f2e4cc80035b17e91aee383611.scn" ]
+source_file="res://tests/player_test/WinterSurvivorV2.glb"
+dest_files=[ "res://.import/WinterSurvivorV2.glb-60b95ec67a6353c68fa392e8047411a5.scn" ]
 
 [params]
 
