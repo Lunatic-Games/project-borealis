@@ -18,7 +18,7 @@ func _ready():
 	material_override.set("shader_param/player_path", height_map_texture)
 
 func _physics_process(_delta):
-	var player = get_tree().get_nodes_in_group("player")[0]
+	var player = get_tree().get_nodes_in_group("player").front()
 	if !player:
 		return
 	
