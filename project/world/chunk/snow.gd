@@ -1,6 +1,6 @@
 extends MeshInstance
 
-const MESH_SIZE = Vector2(40, 60)  # Should be integers
+const MESH_SIZE = Vector2(40, 80)  # Should be integers
 const VERTEX_DENSITY = 4 # Should be integer
 const DEFAULT_HEIGHT = 0.5
 const PATH_HEIGHT = 0.25
@@ -16,7 +16,10 @@ func _ready():
 	height_map.fill(get_height_color(DEFAULT_HEIGHT))
 	height_map_texture.create_from_image(height_map)
 	create_mesh()
+	material_override = material_override.duplicate(true)
 	material_override.set("shader_param/player_path", height_map_texture)
+	material_override.set("shader_param/height_map_size", 
+		PoolIntArray([MESH_SIZE.x, MESH_SIZE.y]))
 
 # Update player paths based on current positions
 func _physics_process(_delta):
