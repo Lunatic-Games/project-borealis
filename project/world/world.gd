@@ -1,6 +1,6 @@
 extends Spatial
 
-const CHUNK_BUFFER = 5.0  # Distance after chunk to wait before swapping
+const CHUNK_BUFFER = 7.0  # Distance after chunk to wait before swapping
 
 onready var front_chunk = $Chunk2
 onready var back_chunk = $Chunk

@@ -1,6 +1,6 @@
 extends Camera
 
-const MOVE_SPEED = 4.0
+const MOVE_SPEED = 6.0
 
 export (Curve) var camera_speed  # Scales camera speed based on player depth
 onready var viewport_height = get_viewport().size.y
