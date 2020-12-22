@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/world.gd" type="Script" id=2]
@@ -15,6 +15,9 @@ shader_param/vertex_density = 4.0
 shader = ExtResource( 4 )
 shader_param/height_map_size = PoolIntArray( 40, 60 )
 shader_param/vertex_density = 4.0
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.245455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.981818 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 2 )
@@ -38,6 +41,7 @@ transform = Transform( 1, 0, 0, 0, 0.610194, 0.792252, 0, -0.792252, 0.610194, 0
 current = true
 size = 50.0
 script = ExtResource( 5 )
+camera_speed = SubResource( 3 )
 
 [editable path="Chunk2"]
 
