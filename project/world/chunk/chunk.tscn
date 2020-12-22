@@ -96,4 +96,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 4, 0 )
 mesh = SubResource( 8 )
 material/0 = null
 
-[node name="Resources" type="Spatial" parent="."]
+[node name="Entities" type="Spatial" parent="."]

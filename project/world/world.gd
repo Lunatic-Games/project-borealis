@@ -1,26 +1,28 @@
 extends Spatial
 
-const CHUNK_LENGTH = 60.0
-const CAMERA_MOVE_SPEED = 1.0
+const CHUNK_BUFFER = 5.0  # Distance after chunk to wait before swapping
 
-onready var camera_start_z = $Camera.translation.z
 onready var front_chunk = $Chunk2
 onready var back_chunk = $Chunk
 onready var camera = $Camera
+onready var viewport_size = get_viewport().size
 
+# Generate world
 func _ready():
-	var player_pos = $Player.translation
-	$Chunk.generate_resources()
-	$Chunk2.generate_resources()
+	front_chunk.generate()
+	back_chunk.generate()
 
-
-func _physics_process(delta):
-	camera.translation.z -= CAMERA_MOVE_SPEED * delta
-	if camera_start_z - camera.translation.z > CHUNK_LENGTH:
-		camera_start_z -= CHUNK_LENGTH
-		back_chunk.translation.z -= CHUNK_LENGTH * 2
-		back_chunk.snow.reset_path()
-		back_chunk.generate_resources()
+# Move camera forwards and update chunks if needed
+func _physics_process(_delta):
+	# Calculate front of chunk + CHUNK_BUFFER
+	var back_chunk_pos = (back_chunk.transform.origin 
+		- Vector3(0, 0, back_chunk.size.y / 2.0 + CHUNK_BUFFER))
+		
+	# Determine if that position is behind the camera view
+	if camera.unproject_position(back_chunk_pos).y > viewport_size.y:
+		# Swap chunks
+		back_chunk.translation.z -= back_chunk.size.y * 2
+		back_chunk.generate()
 		var last_fronk = front_chunk
 		front_chunk = back_chunk
 		back_chunk = last_fronk
