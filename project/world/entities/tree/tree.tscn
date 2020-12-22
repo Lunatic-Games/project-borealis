@@ -1,27 +1,27 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://world/resources/lowpoly.shader" type="Shader" id=1]
+[ext_resource path="res://world/entities/lowpoly.shader" type="Shader" id=1]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.5
 height = 10.0
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
 shader_param/color = Color( 0.337255, 0.227451, 0.0588235, 1 )
 
 [sub_resource type="CylinderMesh" id=3]
-material = SubResource( 8 )
+material = SubResource( 2 )
 top_radius = 0.4
 bottom_radius = 0.5
 radial_segments = 8
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 1 )
 shader_param/color = Color( 0.466667, 0.94902, 0.411765, 1 )
 
 [sub_resource type="SphereMesh" id=5]
-material = SubResource( 7 )
+material = SubResource( 4 )
 radius = 1.5
 radial_segments = 16
 rings = 8
