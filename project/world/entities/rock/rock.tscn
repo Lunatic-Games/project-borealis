@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://world/entities/lowpoly.shader" type="Shader" id=1]
+[ext_resource path="res://world/entities/rock/rock.gd" type="Script" id=2]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.5
@@ -16,7 +17,10 @@ radius = 0.5
 radial_segments = 8
 rings = 8
 
-[node name="Rock" type="StaticBody"]
+[node name="Rock" type="StaticBody" groups=[
+"interactable",
+]]
+script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
