@@ -2,6 +2,8 @@ extends Spatial
 
 const CHUNK_BUFFER = 7.0  # Distance after chunk to wait before swapping
 
+export (int) var length
+
 onready var front_chunk = $Chunk2
 onready var back_chunk = $Chunk
 onready var camera = $Camera
@@ -33,3 +35,7 @@ func _physics_process(_delta):
 		var last_fronk = front_chunk
 		front_chunk = back_chunk
 		back_chunk = last_fronk
+	
+	if camera.is_physics_processing() and camera.distance_travelled > length:
+		camera.translation.z -= camera.distance_travelled - length
+		camera.set_physics_process(false)

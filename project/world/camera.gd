@@ -3,6 +3,9 @@ extends Camera
 const MOVE_SPEED = 6.0
 
 export (Curve) var camera_speed  # Scales camera speed based on player depth
+
+var distance_travelled = 0.0
+
 onready var viewport_height = get_viewport().size.y
 
 # Move camera forward every frame, scales with player depth
@@ -16,4 +19,5 @@ func _physics_process(delta):
 	vp_y = max(0, vp_y)
 	var depth_mod = camera_speed.interpolate((720 - vp_y) / viewport_height)
 	translation.z -= MOVE_SPEED * delta * depth_mod
+	distance_travelled += MOVE_SPEED * delta * depth_mod
 	

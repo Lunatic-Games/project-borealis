@@ -16,6 +16,7 @@ extents = Vector3( 20, 14, 1 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 2 )
+length = 100
 
 [node name="Chunk2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90 )
