@@ -26,10 +26,8 @@ func handle_ground_movement():
 		input.y += 1
 	if Input.is_action_pressed("move_left"):
 		input.x -= 1
-	if input:
-		$Armature.rotation_degrees = Vector3(0, rad2deg(-input.angle()) + 90, 0)
 	input = input.normalized()
-
+	
 	if input.y > 0.1:
 		velocity.z = lerp(velocity.z, MOVE_SPEED * input.y, MOVE_ACCELERATION)
 	elif input.y < -0.1:
