@@ -12,6 +12,13 @@ func _ready():
 	front_chunk.generate()
 	back_chunk.generate()
 
+# Check for pause
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		get_tree().paused = true
+		$CanvasLayer/PauseMenu.visible = true
+		get_tree().set_input_as_handled()
+
 # Move camera forwards and update chunks if needed
 func _physics_process(_delta):
 	# Calculate front of chunk + CHUNK_BUFFER
@@ -26,3 +33,7 @@ func _physics_process(_delta):
 		var last_fronk = front_chunk
 		front_chunk = back_chunk
 		back_chunk = last_fronk
+
+# Bring the camera to a stop once the day cycle is over
+func _on_DayNightTimer_timeout():
+	camera.stopping = true
