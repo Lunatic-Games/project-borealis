@@ -33,3 +33,7 @@ func _physics_process(_delta):
 		var last_fronk = front_chunk
 		front_chunk = back_chunk
 		back_chunk = last_fronk
+
+# Bring the camera to a stop once the day cycle is over
+func _on_DayNightTimer_timeout():
+	camera.stopping = true
