@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menus/text_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/settings_menu/settings_menu.gd" type="Script" id=2]
+
+[node name="SettingsMenu" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 842.0
+margin_top = 432.0
+margin_right = 1077.0
+margin_bottom = 647.0
+
+[node name="Fullscreen" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 235.0
+margin_bottom = 69.0
+text = "Fullscreen"
+
+[node name="Windowed" parent="VBoxContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 73.0
+margin_right = 356.0
+margin_bottom = 142.0
+text = "Leave fullscreen"
+
+[node name="TextButton2" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 73.0
+margin_right = 235.0
+margin_bottom = 142.0
+text = "1920 x 1080"
+
+[node name="Back" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 146.0
+margin_right = 235.0
+margin_bottom = 215.0
+text = "Back"
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
+[connection signal="pressed" from="VBoxContainer/Windowed" to="." method="_on_Windowed_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_Back_pressed"]
