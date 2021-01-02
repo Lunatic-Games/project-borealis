@@ -5,16 +5,25 @@
 [node name="SnowOverlay" type="Node2D"]
 
 [node name="SnowParticles" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1902.99, -757.832 )
+position = Vector2( 1919.1, -757.832 )
 
 [node name="SnowParticles2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1605.65, -757.832 )
+position = Vector2( 1621.76, -757.832 )
 
 [node name="SnowParticles3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1278.07, -755.312 )
+position = Vector2( 1294.18, -755.312 )
 
 [node name="SnowParticles4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 937.892, -755.312 )
+position = Vector2( 954.007, -755.312 )
 
 [node name="SnowParticles5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 635.51, -757.832 )
+position = Vector2( 651.625, -757.832 )
+
+[node name="SnowParticles6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2259.43, -757.832 )
+
+[node name="SnowParticles7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2573.38, -762.589 )
+
+[node name="SnowParticles8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2893.74, -757.25 )
