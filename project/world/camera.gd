@@ -26,6 +26,7 @@ func _physics_process(delta):
 	translation.z -= current_speed * delta
 	distance_travelled += current_speed * delta
 
+# Determine camera speed based on furthest player depth
 func calculate_speed():
 	var furthest
 	for player in get_tree().get_nodes_in_group("player"):
