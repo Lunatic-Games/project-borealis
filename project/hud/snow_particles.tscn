@@ -17,8 +17,9 @@ scale_random = 0.5
 [node name="SnowParticles" type="Particles2D"]
 position = Vector2( 1717.54, -372.466 )
 amount = 128
-lifetime = 5.0
-preprocess = 5.0
-visibility_rect = Rect2( -640, 0, 1280, 1440 )
+lifetime = 7.0
+preprocess = 7.0
+fixed_fps = 120
+visibility_rect = Rect2( -960, 0, 1920, 1440 )
 process_material = SubResource( 1 )
 texture = ExtResource( 1 )
