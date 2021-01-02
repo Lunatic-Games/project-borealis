@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://world/chunk/snow.gd" type="Script" id=1]
+[ext_resource path="res://world/entities/tree/tree.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/chunk/chunk.gd" type="Script" id=4]
 [ext_resource path="res://world/chunk/snow.shader" type="Shader" id=5]
 
@@ -16,22 +17,31 @@ shader_param/height_map_size = PoolIntArray(  )
 shader_param/vertex_density = 4.0
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 1, 2, 30 )
+extents = Vector3( 1, 2, 40.0164 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="Shader" id=11]
+code = "shader_type spatial;
 
-[sub_resource type="CubeMesh" id=6]
-material = SubResource( 5 )
-size = Vector3( 2, 4, 80 )
+uniform vec4 color: hint_color;
 
-[sub_resource type="PlaneMesh" id=7]
-size = Vector2( 2, 80 )
+void vertex() {
+	VERTEX.y += 0.5 * sin(VERTEX.x) * cos(VERTEX.z);
+}
 
-[sub_resource type="CubeMesh" id=8]
-size = Vector3( 30, 2, 80 )
+void fragment() {
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	ALBEDO = color.rgb;
+}"
 
-[sub_resource type="PlaneMesh" id=9]
-size = Vector2( 2, 80 )
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/color = null
+
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 12 )
+size = Vector2( 40, 80 )
+subdivide_width = 50
+subdivide_depth = 50
 
 [node name="Chunk" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
@@ -53,47 +63,45 @@ material_override = SubResource( 3 )
 script = ExtResource( 1 )
 
 [node name="RightWall" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RightWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308502, 2, 0 )
 shape = SubResource( 4 )
 
 [node name="Wall" type="MeshInstance" parent="RightWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-mesh = SubResource( 6 )
+transform = Transform( 0.587771, -0.809027, 0, 0.809027, 0.587771, 0, 0, 0, 1, 9.67413, 14.0281, 0 )
+mesh = SubResource( 10 )
 material/0 = null
 
-[node name="Corner" type="MeshInstance" parent="RightWall"]
-transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.5, 4.75, 0 )
-mesh = SubResource( 7 )
-material/0 = null
+[node name="Tree" parent="RightWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18101, 4.43634, 28.2688 )
 
-[node name="UpperGround" type="MeshInstance" parent="RightWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 0 )
-mesh = SubResource( 8 )
-material/0 = null
+[node name="Tree2" parent="RightWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58724, 8.46092, -33.4876 )
+
+[node name="Tree3" parent="RightWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0884, 3.1885, 2.56899 )
 
 [node name="LeftWall" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -19, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="LeftWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308502, 2, 0 )
 shape = SubResource( 4 )
 
 [node name="Wall" type="MeshInstance" parent="LeftWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-mesh = SubResource( 6 )
+transform = Transform( 0.587771, -0.809027, 0, 0.809027, 0.587771, 0, 0, 0, 1, 9.67413, 14.0281, 0 )
+mesh = SubResource( 10 )
 material/0 = null
 
-[node name="Corner" type="MeshInstance" parent="LeftWall"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.5, 4.75, 0 )
-mesh = SubResource( 9 )
-material/0 = null
+[node name="Tree" parent="LeftWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69584, 2.83004, 9.53674e-07 )
 
-[node name="UpperGround" type="MeshInstance" parent="LeftWall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 4, 0 )
-mesh = SubResource( 8 )
-material/0 = null
+[node name="Tree2" parent="LeftWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17904, 10.3776, -22.6298 )
+
+[node name="Tree3" parent="LeftWall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98213, 7.1157, 23.4304 )
 
 [node name="Entities" type="Spatial" parent="."]
