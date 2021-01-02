@@ -11,7 +11,7 @@ var distance_travelled = 0.0
 var stopping = false
 var current_speed = 0.0
 
-onready var viewport_height = get_viewport().size.y
+onready var viewport_height = get_viewport().get_visible_rect().size.y
 
 # Move camera forward every frame, scales with player depth
 func _physics_process(delta):
@@ -26,6 +26,7 @@ func _physics_process(delta):
 	translation.z -= current_speed * delta
 	distance_travelled += current_speed * delta
 
+# Determine camera speed based on furthest player depth
 func calculate_speed():
 	var furthest
 	for player in get_tree().get_nodes_in_group("player"):
