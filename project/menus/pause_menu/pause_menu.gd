@@ -6,6 +6,15 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause") and visible:
 		_on_Continue_pressed()
 		get_tree().set_input_as_handled()
+	if event.is_action_pressed("ui_cancel") and !$SettingsMenu.visible:
+		_on_Continue_pressed()
+		get_tree().set_input_as_handled()
+
+# Pass movement inputs to player so they are up to date when unpaused
+func _input(event):
+	for player in get_tree().get_nodes_in_group("player"):
+		if player.event_is_for_player(event):
+			player.check_movement_inputs(event)
 
 # Set continue to be focused on being visible
 func _on_visibility_changed():
@@ -31,4 +40,4 @@ func _on_ExitToMainMenu_pressed():
 func _on_SettingsMenu_visibility_changed():
 	if not $SettingsMenu.visible:
 		$CenterContainer.visible = true
-		$CenterContainer/VBoxContainer/Continue.grab_focus()
+		$CenterContainer/VBoxContainer/Settings.grab_focus()

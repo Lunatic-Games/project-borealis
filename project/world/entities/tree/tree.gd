@@ -1,4 +1,4 @@
 extends StaticBody
 
-func interact(player):
-	player.inventory.add("wood", 1)
+func interact(_player):
+	Inventory.add("wood", 1)

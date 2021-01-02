@@ -1,6 +1,12 @@
 extends CenterContainer
 
 
+# Back button also leaves settings
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel") and visible:
+		_on_Back_pressed()
+		get_tree().set_input_as_handled()
+
 # Swap fullscreen and window button and enable fullscreen
 func _on_Fullscreen_pressed():
 	$VBoxContainer/Fullscreen.visible = false

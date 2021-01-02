@@ -6,30 +6,43 @@ const MOVE_ACCELERATION = 0.4
 const JUMP_FORCE = 9.0
 const TERMINAL_VELOCITY = 10.0
 
+export (String) var device
+
 var velocity = Vector3(0, 0, 0)
 var input = Vector2(0, 0)
-var inventory = preload("res://player/inventory.gd").new()
+var movement_inputs = {
+	"forward": false,
+	"right": false,
+	"backward": false,
+	"left": false
+}
 
 # Handle player input and acceleration
 func _physics_process(_delta):
 	handle_ground_movement()
-	handle_vertical_movement()
+	velocity.y = max(velocity.y - GRAVITY, -TERMINAL_VELOCITY)
 	velocity = move_and_slide(velocity, Vector3.UP)
 
+# Only handle inputs for associated device
 func _input(event):
+	if !event_is_for_player(event):
+		return
 	if event.is_action_pressed("interact"):
 		interact()
-		
+	if event.is_action_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_FORCE
+	check_movement_inputs(event)
+	
 # Gets horizontal movement inputs and accelerates velocity.xz
 func handle_ground_movement():
 	input = Vector2(0, 0)
-	if Input.is_action_pressed("move_forward"):
+	if movement_inputs["forward"]:
 		input.y -= 1
-	if Input.is_action_pressed("move_right"):
+	if movement_inputs["right"]:
 		input.x += 1
-	if Input.is_action_pressed("move_backward"):
+	if movement_inputs["backward"]:
 		input.y += 1
-	if Input.is_action_pressed("move_left"):
+	if movement_inputs["left"]:
 		input.x -= 1
 	
 	if input:
@@ -49,12 +62,6 @@ func handle_ground_movement():
 	else:
 		velocity.x = lerp(velocity.x, 0.0, MOVE_ACCELERATION)
 
-# Get jump input and applies gravity to velocity.y
-func handle_vertical_movement():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_FORCE
-	velocity.y = max(velocity.y - GRAVITY, -TERMINAL_VELOCITY)
-
 # Interact with the closest object in fron that is within the interact area
 func interact():
 	var closest_body
@@ -66,3 +73,20 @@ func interact():
 			closest_body = body
 	if closest_body:
 		closest_body.interact(self)
+
+# Determine if event is for this player's device
+func event_is_for_player(event):
+	var input_device = str(event.device)
+	if event is InputEventKey:
+		input_device = "keyboard"
+	if input_device != device:
+		return false
+	return true
+
+# Keep track of continuous player inputs
+func check_movement_inputs(event):
+	for direction in ["forward", "right", "backward", "left"]:
+		if event.is_action_pressed("move_" + direction):
+			movement_inputs[direction] = true
+		elif event.is_action_released("move_" + direction):
+			movement_inputs[direction] = false
