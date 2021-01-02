@@ -17,7 +17,6 @@ func _on_Settings_pressed():
 func _on_ExitToDesktop_pressed():
 	get_tree().quit()
 
-
 func _on_SettingsMenu_visibility_changed():
 	if not $SettingsMenu.visible:
 		$MarginContainer.visible = true
