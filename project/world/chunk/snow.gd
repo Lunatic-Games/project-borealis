@@ -17,16 +17,16 @@ func _ready():
 	height_map_texture.create_from_image(height_map)
 	create_mesh()
 	material_override = material_override.duplicate(true)
-	material_override.set("shader_param/player_path", height_map_texture)
+	material_override.set("shader_param/height_map", height_map_texture)
 	material_override.set("shader_param/height_map_size", 
 		PoolIntArray([MESH_SIZE.x, MESH_SIZE.y]))
 
-# Update player paths based on current positions
+# Update paths based on entity positions
 func _physics_process(_delta):
-	for player in get_tree().get_nodes_in_group("player"):
-		if player.is_on_floor():
-			var path_pos = player.transform.origin - get_parent().transform.origin
-			make_player_path(Vector2(path_pos.x, path_pos.z))
+	for walker in get_tree().get_nodes_in_group("walker"):
+		if walker.is_on_floor():
+			var path_pos = walker.transform.origin - get_parent().transform.origin
+			make_path(Vector2(path_pos.x, path_pos.z))
 
 # Create the mesh using SurfaceTool
 # Uses 4 triangles to make up a square instead of 2 to help with diagonal edges
@@ -58,7 +58,7 @@ func create_mesh():
 	mesh = surface_tool.commit()
 
 # Set the surrounding area to be a lower height
-func make_player_path(position: Vector2):
+func make_path(position: Vector2):
 	height_map.lock()
 	set_height(position, PATH_HEIGHT)
 	set_height(position, PATH_HEIGHT, Vector2(1, 0))
