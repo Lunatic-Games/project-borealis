@@ -21,7 +21,6 @@ _data = [ Vector2( 0, 0.490909 ), 0.0, 0.192424, 0, 0, Vector2( 0.503937, 1 ), 0
 
 [node name="World" type="Spatial"]
 script = ExtResource( 2 )
-number_of_players = 2
 
 [node name="Chunk2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90 )
