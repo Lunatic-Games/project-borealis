@@ -27,8 +27,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90 )
 
 [node name="Chunk" parent="." instance=ExtResource( 3 )]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49558, 0 )
+[node name="Player1" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54437, 2.49558, 0 )
+device = "keyboard"
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.22534, 2.49558, 0 )
+device = "0"
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.610194, 0.792252, 0, -0.792252, 0.610194, 0, 18.2701, 19.7697 )

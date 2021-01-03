@@ -2,6 +2,8 @@ extends Spatial
 
 const CHUNK_BUFFER = 10.0  # Distance after chunk to wait before swapping
 
+export (int, 1, 2) var number_of_players = 1
+
 onready var front_chunk = $Chunk2
 onready var back_chunk = $Chunk
 onready var camera = $Camera
@@ -11,6 +13,9 @@ onready var viewport_size = get_viewport().size
 func _ready():
 	front_chunk.generate()
 	back_chunk.generate()
+	if number_of_players == 1:
+		$Player2.queue_free()
+		$Player1.translation.x = 0.0
 
 # Check for pause
 func _unhandled_input(event):
