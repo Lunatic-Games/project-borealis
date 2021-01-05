@@ -2,7 +2,7 @@ extends Camera
 
 signal stopped
 
-const MOVE_SPEED = 6.0
+const MOVE_SPEED = 4.0
 const STOP_ACCELERATION = 0.05
 
 export (Curve) var camera_speed  # Scales camera speed based on player depth

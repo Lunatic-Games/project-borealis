@@ -11,7 +11,7 @@
 [ext_resource path="res://hud/day_night_overlay.gd" type="Script" id=9]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.245455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.981818 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.245455 ), 0.0, 0.0, 0, 0, Vector2( 0.677165, 0.572727 ), 0.729186, 0.729186, 0, 0, Vector2( 1, 0.981818 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 20, 14, 1 )
