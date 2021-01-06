@@ -11,10 +11,12 @@ const ATTACK_BEGIN_DISTANCE = 5.0
 const TOO_CLOSE_DISTANCE = 4.0
 const PAST_DIRECTIONS_TO_CONSIDER = 40
 const JUMP_FORCE = 4.5
+const MAX_HEALTH = 25
 
 var current_state = States.CHASING
 var last_directions = []
 var velocity = Vector3(0, 0, 0)
+var health = MAX_HEALTH
 
 # Create a random history of movements
 func _ready():
@@ -60,21 +62,6 @@ func _physics_process(_delta):
 	velocity = move_and_slide(Vector3(movement.x, velocity.y, movement.y),
 		Vector3.UP)
 
-# Get the nearest node in a group to this wolf
-func get_closest_in_group(group):
-	var objs = get_tree().get_nodes_in_group(group)
-	objs.sort_custom(self, "_distance_sort")
-	for obj in objs:
-		if obj != self:
-			return obj
-	return null
-
-# Used for sort_custom
-func _distance_sort(a, b):
-	var a_dist = global_transform.origin.distance_to(a.global_transform.origin)
-	var b_dist = global_transform.origin.distance_to(b.global_transform.origin)
-	return a_dist < b_dist
-
 # Wolves will circle around the player and will try not to be too close togther
 # Moves based on 40 past decisions, so the wolf won't jitter in place
 func circle_player(pos, player_pos, movement):
@@ -112,7 +99,36 @@ func circle_player(pos, player_pos, movement):
 		movement += pos.direction_to(player_pos).tangent() * MOVE_SPEED
 	return movement
 
+func hit(damage, _knockback):
+	if health <= 0:
+		return
+	health -= damage
+	$AnimationPlayer.play("hit")
+	if health <= 0:
+		set_physics_process(false)
+		$AnimationPlayer.queue("die")
+		return
+	velocity.y = JUMP_FORCE
+	if current_state == States.ATTACKING:
+		current_state = States.RETREATING
+		$AttackTimer.stop()
+
 # Perform attack
 func _on_AttackTimer_timeout():
 	current_state = States.ATTACKING
 	velocity.y = JUMP_FORCE
+
+# Get the nearest node in a group to this wolf
+func get_closest_in_group(group):
+	var objs = get_tree().get_nodes_in_group(group)
+	objs.sort_custom(self, "_distance_sort")
+	for obj in objs:
+		if obj != self:
+			return obj
+	return null
+
+# Used for sort_custom
+func _distance_sort(a, b):
+	var a_dist = global_transform.origin.distance_to(a.global_transform.origin)
+	var b_dist = global_transform.origin.distance_to(b.global_transform.origin)
+	return a_dist < b_dist

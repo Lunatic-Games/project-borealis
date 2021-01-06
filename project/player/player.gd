@@ -17,6 +17,8 @@ var movement_inputs = {
 	"left": false
 }
 
+onready var weapon = $Rotation/Weapon
+
 # Handle player input and acceleration
 func _physics_process(_delta):
 	handle_ground_movement()
@@ -29,6 +31,8 @@ func _input(event):
 		return
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("attack"):
+		weapon.attack()
 	if event.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_FORCE
 	check_movement_inputs(event)
@@ -66,7 +70,7 @@ func handle_ground_movement():
 func interact():
 	var closest_body
 	var closest_dist = INF
-	for body in $Rotation/Area.get_overlapping_bodies():
+	for body in $Rotation/InteractArea.get_overlapping_bodies():
 		if not body.is_in_group("interactable") or not body.has_method("interact"):
 			continue
 		if global_transform.origin.distance_to(body.global_transform.origin) < closest_dist:
