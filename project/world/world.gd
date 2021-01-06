@@ -16,6 +16,8 @@ func _ready():
 	if number_of_players == 1:
 		$Player2.queue_free()
 		$Player1.translation.x = 0.0
+	for particles in $CanvasLayer/SnowOverlay.get_children():
+		particles.restart()
 
 # Check for pause
 func _unhandled_input(event):
