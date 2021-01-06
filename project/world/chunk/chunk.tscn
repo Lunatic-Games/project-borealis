@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world/chunk/snow.gd" type="Script" id=1]
 [ext_resource path="res://world/entities/tree/tree.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/wolf/wolf_den.tscn" type="PackedScene" id=3]
 [ext_resource path="res://world/chunk/chunk.gd" type="Script" id=4]
 [ext_resource path="res://world/chunk/snow.shader" type="Shader" id=5]
 
@@ -19,7 +20,7 @@ shader_param/vertex_density = 4.0
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 1, 2, 40.0164 )
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=5]
 code = "shader_type spatial;
 
 uniform vec4 color: hint_color;
@@ -33,18 +34,20 @@ void fragment() {
 	ALBEDO = color.rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 11 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/color = null
 
-[sub_resource type="PlaneMesh" id=10]
-material = SubResource( 12 )
+[sub_resource type="PlaneMesh" id=7]
+material = SubResource( 6 )
 size = Vector2( 40, 80 )
 subdivide_width = 50
 subdivide_depth = 50
 
 [node name="Chunk" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -71,7 +74,7 @@ shape = SubResource( 4 )
 
 [node name="Wall" type="MeshInstance" parent="RightWall"]
 transform = Transform( 0.587771, -0.809027, 0, 0.809027, 0.587771, 0, 0, 0, 1, 9.67413, 14.0281, 0 )
-mesh = SubResource( 10 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="Tree" parent="RightWall" instance=ExtResource( 2 )]
@@ -92,7 +95,7 @@ shape = SubResource( 4 )
 
 [node name="Wall" type="MeshInstance" parent="LeftWall"]
 transform = Transform( 0.587771, -0.809027, 0, 0.809027, 0.587771, 0, 0, 0, 1, 9.67413, 14.0281, 0 )
-mesh = SubResource( 10 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="Tree" parent="LeftWall" instance=ExtResource( 2 )]
@@ -105,3 +108,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17904, 10.3776, -22.6298 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98213, 7.1157, 23.4304 )
 
 [node name="Entities" type="Spatial" parent="."]
+
+[node name="WolfDen" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5358, 0, 0 )

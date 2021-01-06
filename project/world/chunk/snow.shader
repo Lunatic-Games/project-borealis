@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform sampler2D player_path;
+uniform sampler2D height_map;
 uniform ivec2 height_map_size;
 uniform int vertex_density;
 
@@ -13,7 +13,7 @@ float height(vec2 position) {
 	} else if (int(position.y) >= vertex_density * height_map_size.y - 1) {
 		position.y = float(vertex_density * height_map_size.y) - 1.0;
 	}
-	float val = texelFetch(player_path, ivec2(int(position.x), int(position.y)), 0).r;
+	float val = texelFetch(height_map, ivec2(int(position.x), int(position.y)), 0).r;
 	return val * 2.0;
 }
 

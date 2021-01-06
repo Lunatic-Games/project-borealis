@@ -3,6 +3,7 @@ extends StaticBody
 const ENTITY_CHANCE = 0.01
 const SIDE_MARGIN = 3  # Don't spawn entites along edge
 const PLAYER_SPACE = 3  # Don't generate an entity within this distance to a player
+const WOLF_DEN_X_POSITION = 18.5
 const ENTITY_SPAWN_CHANCES = {
 	"tree": [0.9, preload("res://world/entities/tree/tree.tscn")],
 	"rock": [0.1, preload("res://world/entities/rock/rock.tscn")]
@@ -22,6 +23,7 @@ func generate():
 	rng.randomize()
 	snow.reset_path()
 	players = get_tree().get_nodes_in_group("player")
+	spawn_wolf_dens()
 	set_unused_entities()
  
 	for x in range(SIDE_MARGIN, size.x - SIDE_MARGIN):
@@ -76,3 +78,14 @@ func hide_unused_entities():
 	for entity_type in unused_entities:
 		for entity in unused_entities[entity_type]:
 			entity.visible = false
+
+# Relocate the wolf den to a random position alongside the walls
+func spawn_wolf_dens():
+	$WolfDen.reset()
+	$WolfDen.translation.z = rand_range(0, size.y)
+	if rng.randf() > 0.5:
+		$WolfDen.translation.x = -WOLF_DEN_X_POSITION
+		$WolfDen.rotation.y = 0
+	else:
+		$WolfDen.translation.x = WOLF_DEN_X_POSITION
+		$WolfDen.rotation.y = PI
