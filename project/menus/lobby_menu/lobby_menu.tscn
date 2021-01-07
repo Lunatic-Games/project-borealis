@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/lobby_menu/character_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/text_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/lobby_menu/lobby_menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/Staatliches-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 4 )
+
+[node name="LobbyMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 139.0
+custom_fonts/font = SubResource( 1 )
+text = "A second player can join using another device"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+margin_left = 660.0
+margin_top = 140.0
+margin_right = 1260.0
+margin_bottom = 940.0
+custom_constants/separation = -600
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterContainer1" parent="CenterContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 600.0
+margin_bottom = 800.0
+
+[node name="CharacterContainer2" parent="CenterContainer/HBoxContainer" instance=ExtResource( 1 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 600.0
+margin_bottom = 800.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -158.0
+margin_top = -104.0
+margin_right = 158.0
+margin_bottom = -35.0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_right = 97.0
+margin_bottom = 69.0
+text = "Back"
+
+[node name="ReadyButton" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 197.0
+margin_right = 316.0
+margin_bottom = 69.0
+text = "Ready"
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ReadyButton" to="." method="_on_ReadyButton_pressed"]

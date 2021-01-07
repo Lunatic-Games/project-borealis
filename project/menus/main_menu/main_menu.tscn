@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://menus/main_menu/background.jpg" type="Texture" id=1]
 [ext_resource path="res://menus/text_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/ui/Staatliches-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://menus/settings_menu/settings_menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/lobby_menu/lobby_menu.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -73,7 +74,11 @@ text = "Exit To Desktop"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 5 )]
 visible = false
+
+[node name="LobbyMenu" parent="." instance=ExtResource( 6 )]
+visible = false
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewAdventure" to="." method="_on_NewAdventure_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitToDesktop" to="." method="_on_ExitToDesktop_pressed"]
 [connection signal="visibility_changed" from="SettingsMenu" to="." method="_on_SettingsMenu_visibility_changed"]
+[connection signal="visibility_changed" from="LobbyMenu" to="." method="_on_LobbyMenu_visibility_changed"]
