@@ -42,6 +42,16 @@ func _physics_process(_delta):
 		front_chunk = back_chunk
 		back_chunk = last_middle
 
+func set_players(p1_device, p2_device):
+	assert(p1_device or p2_device)
+	if not p1_device:
+		$Player1.device = p2_device
+	else:
+		$Player1.device = p1_device
+		if p2_device:
+			$Player2.device = p2_device
+			number_of_players = 2
+
 # Bring the camera to a stop once the day cycle is over
 func _on_DayNightTimer_timeout():
 	camera.stopping = true

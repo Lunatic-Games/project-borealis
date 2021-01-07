@@ -31,10 +31,12 @@ func _on_Settings_pressed():
 	$CenterContainer.visible = false
 	$SettingsMenu.visible = true
 
-# Go to main menu
-func _on_ExitToMainMenu_pressed():
+# Go back to lobby
+func _on_Exit_pressed():
 	get_tree().paused = false
-	var _ret = get_tree().change_scene("res://menus/main_menu/main_menu.tscn")
+	get_tree().root.get_node("World").queue_free()
+	get_tree().root.get_node("MainMenu/LobbyMenu").return_to()
+	Inventory.reset()
 
 # Left settings, make pause menu visible and focused again
 func _on_SettingsMenu_visibility_changed():

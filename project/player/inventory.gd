@@ -23,3 +23,6 @@ func remove(name, quantity):
 	else:
 		items[name] = current - quantity
 	emit_signal("changed")
+
+func reset():
+	items = {}
