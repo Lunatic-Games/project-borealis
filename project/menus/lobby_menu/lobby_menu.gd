@@ -35,6 +35,7 @@ func _input(event):
 
 func _on_visibility_changed():
 	if visible:
+		$AnimationPlayer.play("fast_fade_in")
 		set_process_input(true)
 		player_1_container.set_process_input(true)
 		player_2_container.set_process_input(true)

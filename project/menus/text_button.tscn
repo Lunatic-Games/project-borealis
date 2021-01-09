@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/ui/Staatliches-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menus/text_button.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -16,9 +17,61 @@
 size = 54
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "hover"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 1.05, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "press"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.95, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "unhover"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [node name="TextButton" type="Button"]
 margin_right = 202.0
 margin_bottom = 41.0
+rect_scale = Vector2( 0.95, 1 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
@@ -29,6 +82,18 @@ custom_colors/font_color = Color( 0.784314, 0.784314, 0.784314, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.666667, 0.666667, 0.666667, 1 )
 text = "Button"
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hover = SubResource( 7 )
+anims/press = SubResource( 9 )
+anims/unhover = SubResource( 8 )
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_focus_exited"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_focus_exited"]
