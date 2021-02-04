@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.05, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 resource_name = "press"
 length = 0.05
 step = 0.05
@@ -51,8 +51,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.95, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "unhover"
+[sub_resource type="Animation" id=9]
 length = 0.05
 step = 0.05
 tracks/0/type = "value"
@@ -89,8 +88,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hover = SubResource( 7 )
-anims/press = SubResource( 9 )
-anims/unhover = SubResource( 8 )
+anims/press = SubResource( 10 )
+anims/unhover = SubResource( 9 )
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_focus_exited"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
