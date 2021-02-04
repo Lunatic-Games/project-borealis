@@ -81,7 +81,7 @@ func interact():
 # Determine if event is for this player's device
 func event_is_for_player(event):
 	var input_device = str(event.device)
-	if event is InputEventKey:
+	if event is InputEventKey or event is InputEventMouse:
 		input_device = "keyboard"
 	if input_device != device:
 		return false

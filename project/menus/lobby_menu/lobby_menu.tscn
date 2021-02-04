@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/lobby_menu/character_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/text_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/lobby_menu/lobby_menu.gd" type="Script" id=3]
+[ext_resource path="res://menus/lobby_menu/countdown_overlay.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fast_fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer/CharacterContainer1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer/CharacterContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BackButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="LobbyMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 50.0
+margin_right = 1920.0
+margin_bottom = 850.0
+custom_constants/separation = 40
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterContainer1" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 340.0
+margin_top = 0.0
+margin_right = 940.0
+margin_bottom = 800.0
+
+[node name="CharacterContainer2" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 980.0
+margin_top = 0.0
+margin_right = 1580.0
+margin_bottom = 800.0
+
+[node name="BackButton" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.5
+margin_top = -104.0
+margin_right = 48.5
+margin_bottom = -35.0
+focus_mode = 0
+text = "Back"
+
+[node name="CountdownOverlay" parent="." instance=ExtResource( 4 )]
+visible = false
+p1_container_path = NodePath("../HBoxContainer/CharacterContainer1")
+p2_container_path = NodePath("../HBoxContainer/CharacterContainer2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fast_fade_in = SubResource( 1 )
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="ready_changed" from="HBoxContainer/CharacterContainer1" to="." method="_on_character_container_ready_changed"]
+[connection signal="ready_changed" from="HBoxContainer/CharacterContainer2" to="." method="_on_character_container_ready_changed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

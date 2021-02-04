@@ -17,7 +17,7 @@ _data = [ Vector2( 0, 0.245455 ), 0.0, 0.0, 0, 0, Vector2( 0.677165, 0.572727 ),
 extents = Vector3( 20, 14, 1 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.490909 ), 0.0, 0.192424, 0, 0, Vector2( 0.503937, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.490909 ), 0.0, 0.192424, 0, 0, Vector2( 0.492063, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 2 )
