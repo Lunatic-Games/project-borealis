@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/ui/Staatliches-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://tests/player_test/WinterSurvivorV2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player_model.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/lobby_menu/character_view.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -41,10 +41,10 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 0.0485011, 0.998823, 0, -0.998823, 0.0485011, 0.005, 2.582, 87.074 )
+transform = Transform( 1, 0, 0, 0, 0.0485011, 0.998823, 0, -0.998823, 0.0485011, 0.005, 3.04482, 87.074 )
 
-[node name="WinterSurvivorV2" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
-transform = Transform( 0.945507, 0, 0.325601, -0.325514, -0.0230887, 0.945255, 0.00751771, -0.999733, -0.0218305, 0, 0, 88.102 )
+[node name="PlayerModel" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+transform = Transform( 0.964557, -0.00628586, 0.263798, -0.263538, 0.0274214, 0.964259, -0.0132949, -0.999604, 0.024793, 0, 0, 87.8952 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
