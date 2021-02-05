@@ -12,15 +12,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-margin_left = -68.0
-margin_right = 68.0
-margin_bottom = 46.0
-text = "All items:"
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,15 +21,145 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-margin_top = 50.0
-margin_right = 1920.0
-margin_bottom = 1030.0
-scroll_horizontal_enabled = false
+[node name="ManagerTest" type="VBoxContainer" parent="."]
+margin_left = 248.0
+margin_top = 29.0
+margin_right = 548.0
+margin_bottom = 1039.0
+custom_constants/separation = -20
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ItemList" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
-margin_right = 1920.0
-margin_bottom = 980.0
+[node name="Title" parent="ManagerTest" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 300.0
+margin_bottom = 46.0
+text = "All items:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ManagerTest"]
+margin_top = 26.0
+margin_right = 300.0
+margin_bottom = 1010.0
+size_flags_horizontal = 5
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="VBoxContainer" parent="ManagerTest/ScrollContainer"]
+margin_right = 300.0
+margin_bottom = 984.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="Label" parent="ManagerTest/ScrollContainer/ItemList"]
+margin_right = 300.0
+margin_bottom = 14.0
+
+[node name="DisplayTests" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -920.0
+margin_top = -98.0
+margin_right = -497.0
+margin_bottom = 98.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SingleQuantity" type="HBoxContainer" parent="DisplayTests"]
+margin_right = 422.0
+margin_bottom = 46.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextLabel" parent="DisplayTests/SingleQuantity" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 219.0
+margin_bottom = 46.0
+text = "Single quantity: "
+
+[node name="TextLabel2" parent="DisplayTests/SingleQuantity" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 223.0
+margin_right = 223.0
+margin_bottom = 46.0
+text = ""
+
+[node name="MultipleQuantity" type="HBoxContainer" parent="DisplayTests"]
+margin_top = 50.0
+margin_right = 422.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextLabel" parent="DisplayTests/MultipleQuantity" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 246.0
+margin_bottom = 46.0
+text = "Multiple Quantity:"
+
+[node name="TextLabel2" parent="DisplayTests/MultipleQuantity" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 250.0
+margin_right = 250.0
+margin_bottom = 46.0
+text = ""
+
+[node name="SingleQuantityNumbers" type="HBoxContainer" parent="DisplayTests"]
+margin_top = 100.0
+margin_right = 422.0
+margin_bottom = 146.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextLabel" parent="DisplayTests/SingleQuantityNumbers" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 381.0
+margin_bottom = 46.0
+text = "Single Quantity w/ numbers: "
+
+[node name="TextLabel2" parent="DisplayTests/SingleQuantityNumbers" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 385.0
+margin_right = 385.0
+margin_bottom = 46.0
+text = ""
+
+[node name="MultipleQuantityNumbers" type="HBoxContainer" parent="DisplayTests"]
+margin_top = 150.0
+margin_right = 422.0
+margin_bottom = 196.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextLabel" parent="DisplayTests/MultipleQuantityNumbers" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 413.0
+margin_bottom = 46.0
+text = "Multiple quantity w/ numbers: "
+
+[node name="TextLabel2" parent="DisplayTests/MultipleQuantityNumbers" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 417.0
+margin_right = 417.0
+margin_bottom = 46.0
+text = ""
